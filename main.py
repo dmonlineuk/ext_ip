@@ -4,6 +4,8 @@ import dotenv
 import clicksend_client
 from clicksend_client import SmsMessage
 from clicksend_client.rest import ApiException
+from prefect import flow
+
 
 def fetch_ip():
     response = requests.get("https://icanhazip.com/")
@@ -61,8 +63,8 @@ def send_msg(old_ip, new_ip):
         print("Exception when calling SMSApi->sms_send_post: %s\n" % e)
 
 
-def main():
-    config = dotenv.dotenv_values(".env")
+@flow(name="IP Address Monitor")
+def flow():
     init_db()
     old_ip = load_ip_from_db()
     print(f"Old IP: {old_ip}")
@@ -73,4 +75,6 @@ def main():
         send_msg(old_ip, ip)
 
 if __name__ == "__main__":
-    main()
+    flow.serve(
+        name="IP Address Monitor",
+    )
