@@ -1,5 +1,5 @@
 # ext_ip
-Checks whether the external ip address of the home network has changed
+Checks whether the external ip address of the home network has changed. For the SMS notification, [clicksend.com](https://dashboard.clicksend.com/home) is used. Create a free account to use free credit then topup when needed.
 
 ## Setup
 1. Install python (if not already present)
@@ -9,7 +9,7 @@ Checks whether the external ip address of the home network has changed
 1. Fetch down the repo contents e.g. `git clone https://github.com/dmonlineuk/ext_ip.git`
 1. Install requirements e.g. `cd ext_ip ; pip install -r .\requirements.txt`
 1. Log into prefect e.g. `prefect cloud login`
-1. Set up a `.env` file, with the following information:
+1. Set up a `.env` file, with the following information relating to your clicksend account:
 ```.env
 API_KEY=xxxx
 USERNAME=xxx@xxx.xx
