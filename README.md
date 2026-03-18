@@ -1,5 +1,9 @@
 # ext_ip
-Checks whether the external ip address of the home network has changed. For the SMS notification, [clicksend.com](https://dashboard.clicksend.com/home) is used. Create a free account to use free credit then topup when needed.
+Checks whether the external ip address of the home network has changed. 
+
+For the SMS notification, [clicksend.com](https://dashboard.clicksend.com/home) is used. Create a free account to use free credit then topup when needed.
+
+For orchestration, [app.prefect.cloud](https://app.prefect.cloud) is used. Create a free hobbyist account, and observe the limits of this when scheduling flows. An API key is used when logging into prefect from the terminal (cli).
 
 ## Setup
 1. Install python (if not already present)
@@ -19,12 +23,13 @@ TO_NUMBER=+441234567890
 Note this holds the thread while the prefect flow is served, while the Prefect UI is used to schedule or run actual flow runs; ctrl+c will stop this
 
 ## Advanced - Background served flows
+1. Ensure you are authorised for prefect cloud e.g. `prefect cloud login`
 1. Create a batch file similar to the following
 ```cmd
 cd C:\Users\myself\projects\prefect\ext_ip\
 call ..\Scripts\activate.bat
 python main.py
 ```
-2. Set up a scheduled task to run this batch file. Maybe set it so it re-run in case of failure or every 5 minutes.
+3. Set up a scheduled task to run this batch file. Maybe set it so it re-run in case of failure or every 5 minutes.
 Note the flow does not run as per any schedule you set in the OS, rather as before it should run and hold its thread in the background, while the Prefect UI is used to schedule or run actual flow runs
  
