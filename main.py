@@ -7,6 +7,10 @@ from clicksend_client.rest import ApiException
 from prefect import flow
 
 
+# ToDo: Add api calls to use godaddy api to update dns record with new ip address
+# https://www.instructables.com/Quick-and-Dirty-Dynamic-DNS-Using-GoDaddy/
+# https://developer.godaddy.com/doc/endpoint/domains#/v1/recordReplaceTypeName
+
 def fetch_ip():
     response = requests.get("https://icanhazip.com/")
     return response.text.strip()
